@@ -2,6 +2,7 @@ import discord
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 client = discord.Client()
@@ -51,6 +52,12 @@ async def on_message(message):
     if message.content.startswith('*Merhaba'):
         await message.channel.send('Merhaba')
         
+    if "sefere gidiyorum" in message.content:
+        e = discord.Embed()
+        #e.set_image(url=animeler[8])
+        await message.channel.send(animeler[8])
+        await message.channel.send('Beni de bekle Hünkarım seni yanlız bırakamam')
+
     for i in range(0,len(kufurler)):
         if kufurler[i] in message.content:
             await message.channel.send('Bu ne hadsizlik !!!')
@@ -62,4 +69,4 @@ async def on_member_join(member):
         f'Hi {member.name}, Osmanlı Cumhuriyeti ne hoşgeldin tatlım!'
     )
 
-client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.l9DaqvuKTPBbD19RRi8tVY47cNs')
+client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.dKrL5BfVQITanWlLICmJ6oorruY')
