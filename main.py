@@ -47,13 +47,9 @@ async def on_message(message):
         await message.channel.send('Merhaba')
         
     for i in range(0,len(kufurler)):
-        """
-        if message.content.startswith(kufurler[i]):
+        if kufurler[i] in message.content:
             await message.channel.send('Bu ne hadsizlik !!!')
-        """
-        if message.content.startswith(kufurler[i]):
-            await message.channel.send(message.content.startswith())
-            
+        
 @client.event
 async def on_member_join(member):
     await member.create_dm()
@@ -61,4 +57,4 @@ async def on_member_join(member):
         f'Hi {member.name}, Osmanlı Cumhuriyeti ne hoşgeldin tatlım!'
     )
 
-client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.I6XHeDhFbNUc3gym3oK44VDfuds')
+client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.l9DaqvuKTPBbD19RRi8tVY47cNs')
