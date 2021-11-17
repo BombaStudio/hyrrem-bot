@@ -42,7 +42,12 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
+    
+    if message.content.startswith('*author'):
+        await message.channel.send(str(message.author))
+    if message.content.startswith('*authorid'):
+        await message.channel.send(str(message.author.id))
+        
     if message.content.startswith('*Merhaba'):
         await message.channel.send('Merhaba')
         
