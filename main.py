@@ -47,7 +47,7 @@ async def on_message(message):
     if message.content.startswith('*author'):
         await message.channel.send(str(message.author))
     if message.content.startswith('*tag'):
-        await message.channel.send(str(message.tag))
+        await message.channel.send(str(message.author.role))
     if message.content.startswith('*authorid'):
         await message.channel.send(str(message.author.id))
         
@@ -55,10 +55,21 @@ async def on_message(message):
         await message.channel.send('Merhaba')
         
     if "sefere gidiyorum" in message.content:
-        e = discord.Embed()
+        #e = discord.Embed()
         #e.set_image(url=animeler[8])
-        await message.channel.send(animeler[7])
-        await message.channel.send('Beni de bekle Hünkarım seni yanlız bırakamam')
+        if str(message.author.id) == "691410282156654674":
+            await message.channel.send(animeler[7])
+            await message.channel.send('Beni de bekle Hünkarım seni yanlız bırakamam')
+        else:
+            await message.channel.send(animeler[6])
+            await message.channel.send('Bu savaşı da zafelerle getirin yiğitlerim')
+    if message.content.upper() == "SENI SEVIYORUM HÜRREM":
+        if str(message.author.id) == "691410282156654674":
+            await message.channel.send(animeler[3])
+            await message.channel.send('Bende sizi Hünkarım')
+        else:
+            await message.channel.send(animeler[5])
+            await message.channel.send('Tombul oldum diye sevme beni küstüm')
 
     for i in range(0,len(kufurler)):
         if kufurler[i] in message.content:
@@ -72,4 +83,4 @@ async def on_member_join(member):
         f'Hi {member.name}, Osmanlı Cumhuriyeti ne hoşgeldin tatlım!'
     )
 
-client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.dKrL5BfVQITanWlLICmJ6oorruY')
+client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.czqj4uJqXePYLnQn-wC6WAVS2Og')
