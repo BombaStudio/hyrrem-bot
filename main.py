@@ -46,6 +46,8 @@ async def on_message(message):
     
     if message.content.startswith('*author'):
         await message.channel.send(str(message.author))
+    if message.content.startswith('*tag'):
+        await message.channel.send(str(message.tag))
     if message.content.startswith('*authorid'):
         await message.channel.send(str(message.author.id))
         
