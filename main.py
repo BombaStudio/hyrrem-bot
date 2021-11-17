@@ -47,8 +47,12 @@ async def on_message(message):
         await message.channel.send('Merhaba')
         
     for i in range(0,len(kufurler)):
+        """
         if message.content.startswith(kufurler[i]):
             await message.channel.send('Bu ne hadsizlik !!!')
+        """
+        if message.content.startswith(kufurler[i]):
+            await message.channel.send(message.content.startswith())
             
 @client.event
 async def on_member_join(member):
