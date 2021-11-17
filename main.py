@@ -1,6 +1,9 @@
 import discord
 import os
 
+load_dotenv()
+TOKEN = os.getenv('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.27Rsu-uaPL22Ww8NOlYVOMP9HCM')
+
 client = discord.Client()
 
 kufurler = [
@@ -30,4 +33,4 @@ async def on_member_join(member):
         f'Hi {member.name}, welcome to my Discord server!'
     )
 
-client.run(os.getenv('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.27Rsu-uaPL22Ww8NOlYVOMP9HCM'))
+client.run(TOKEN)
