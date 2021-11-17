@@ -73,8 +73,12 @@ async def on_message(message):
 
     for i in range(0,len(kufurler)):
         if kufurler[i] in message.content:
-            await message.channel.send(animeler[2])
-            await message.channel.send('Bu ne hadsizlik !!!')
+            if str(message.author.id) == "691410282156654674":
+                await message.channel.send(animeler[9])
+                await message.channel.send('Kalbimi kırdınız Hünkarım')
+            else:
+                await message.channel.send(animeler[2])
+                await message.channel.send('Mahidevran benimle doğru konuş zira karşında sultan süleymanın nikahlı karısı var sen bir köle cariyesin ben ise gerçek bir sultanım')
         
 @client.event
 async def on_member_join(member):
