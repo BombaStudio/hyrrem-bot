@@ -54,7 +54,7 @@ async def on_message(message):
 async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(
-        f'Hi {member.name}, welcome to my Discord server!'
+        f'Hi {member.name}, Osmanlı Cumhuriyeti ne hoşgeldin tatlım!'
     )
 
 client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.I6XHeDhFbNUc3gym3oK44VDfuds')
