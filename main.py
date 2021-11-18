@@ -1,43 +1,28 @@
 import discord
 import os
 from dotenv import load_dotenv
+from lists import *
+import json
+import random
+from discord.ext import commands
+from youtube_dl import *
+from discord.utils import get
+from discord import FFmpegPCMAudio
+
+with open(os.path.dirname(__file__) + "config.json", "r+") as f:
+    data = json.load(f)
+    BotToken = data["BotToken"]
+    AdminID = data["AdminID"]
 
 
 load_dotenv()
 
 client = discord.Client()
 
-kufurler = [
-    "amk","oç","aq"
-]
-animeler = [
-    #seferde
-    "https://cdn.myanimelist.net/s/common/uploaded_files/1449740311-6a7b98fbf1ec9f4edcb3101834263ac2.jpeg",
-    #müzik dinliyor
-    "https://cdn.discordapp.com/attachments/891598729096876063/910475982408912946/hot-Maki-Nishikino-anime-girl-smile.png",
-    #sinirli
-    "https://cdn.discordapp.com/attachments/891598729096876063/910476117859762197/1449739970-dc7f29fde95a3ec6ca48108a42efc359.png",
-    #güler yüzlü
-    "https://cdn.discordapp.com/attachments/891598729096876063/910476303055069235/adorable-anime-freckles-ginger-Favim.png",
-    #tatlı bakış
-    "https://cdn.discordapp.com/attachments/891598729096876063/910476392586698752/c479512a08ab6582dd16032b94081257.png",
-    #sonbahar
-    "https://cdn.discordapp.com/attachments/891598729096876063/910476437608361995/original.png",
-    #deathnote
-    "https://cdn.discordapp.com/attachments/891598729096876063/910476601022640158/f3133c20e2d84f5e894d46b7ad1f6671.png",
-    #sefere hazırlık
-    "https://cdn.discordapp.com/attachments/891598729096876063/910476700062711808/d6c2735a69253d56c637203a109b4d79.png",
-    #sefer bitti
-    "https://cdn.discordapp.com/attachments/891598729096876063/910476952681447494/d4f771bde4bc78d9ec8bbc12b66a8e50.png",
-    #ağlamak
-    "https://cdn.discordapp.com/attachments/891598729096876063/910477068658163753/1479932380-a9153da45d1a5c0ded4210c22b264e22.png",
-    #gezmek
-    "https://cdn.discordapp.com/attachments/891598729096876063/910478431102332938/8a5dc8b37d211d1bb3065d1c369b08a6.png"
-]
-
 @client.event
 async def on_ready():
     print('{0.user} olarak Hünkarımızın yanına geldik'.format(client))
+
 
 @client.event
 async def on_message(message):
@@ -53,18 +38,24 @@ async def on_message(message):
         
     if message.content.startswith('*Merhaba'):
         await message.channel.send('Merhaba')
+    if message.content.upper() == "benim için müzik önerir misin".upper():
+        await message.channel.send(animeler[1])
+        await message.channel.send("\n\n Bu müziğin sana iyi geleceğinden eminim canım.\n\n" + muzikler[random.randint(0,len(muzikler))])
         
-    if "sefere gidiyorum" in message.content:
+    if message.content.startswith('*stop'):
+        await message.voice_client.disconnect()
+        
+    if "sefere gidiyorum" in message.content or "sefere gidiyoruz" in message.content or "sefere çıkıyorum" in message.content or "sefere çıkıyoruz" in message.content:
         #e = discord.Embed()
         #e.set_image(url=animeler[8])
-        if str(message.author.id) == "691410282156654674":
-            await message.channel.send(animeler[7])
+        if str(message.author.id) == AdminID:
+            await message.channel.send(animeler[8])
             await message.channel.send('Beni de bekle Hünkarım seni yanlız bırakamam')
         else:
             await message.channel.send(animeler[6])
             await message.channel.send('Bu savaşı da zafelerle getirin yiğitlerim')
     if message.content.upper() == "SENI SEVIYORUM HÜRREM":
-        if str(message.author.id) == "691410282156654674":
+        if str(message.author.id) == AdminID:
             await message.channel.send(animeler[3])
             await message.channel.send('Bende sizi Hünkarım')
         else:
@@ -72,8 +63,8 @@ async def on_message(message):
             await message.channel.send('Tombul oldum diye sevme beni küstüm')
 
     for i in range(0,len(kufurler)):
-        if kufurler[i] in message.content:
-            if str(message.author.id) == "691410282156654674":
+        if kufurler[i].upper() in message.content.upper():
+            if str(message.author.id) == AdminID:
                 await message.channel.send(animeler[9])
                 await message.channel.send('Kalbimi kırdınız Hünkarım')
             else:
@@ -87,4 +78,4 @@ async def on_member_join(member):
         f'Hi {member.name}, Osmanlı Cumhuriyeti ne hoşgeldin tatlım!'
     )
 
-client.run('OTEwNDcwMjkyOTE5NDUxNjQ4.YZTTiQ.czqj4uJqXePYLnQn-wC6WAVS2Og')
+client.run(BotToken)
