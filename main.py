@@ -4,10 +4,7 @@ from dotenv import load_dotenv
 from lists import *
 import json
 import random
-from discord.ext import commands
-from youtube_dl import *
-from discord.utils import get
-from discord import FFmpegPCMAudio
+
 
 with open(os.path.dirname(__file__) + "config.json", "r+") as f:
     data = json.load(f)
