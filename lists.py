@@ -5,11 +5,6 @@ kufur_server = urllib.request.urlopen("https://raw.githubusercontent.com/ooguz/t
 
 kufurler = eval(kufur_server.read())
 
-"""
-kufurler = [
-    "amk","oç","yarrak","yar"
-]
-"""
 
 animeler = [
     #seferde
