@@ -4,13 +4,18 @@ from dotenv import load_dotenv
 from lists import *
 import json
 import random
+from games import *
 
 
 with open(os.path.dirname(__file__) + "config.json", "r+") as f:
     data = json.load(f)
-    BotToken = data["BotToken"]
+    BotToken = data["Bot"]["BotToken"]
     AdminID = data["AdminID"]
 
+with open(os.path.dirname(__file__) + "hafiza.json", "r+") as f:
+    data = json.load(f)
+    gecici = []
+    kalici = data["kalici"]
 
 load_dotenv()
 
@@ -32,7 +37,24 @@ async def on_message(message):
         await message.channel.send(str(message.author.role))
     if message.content.startswith('*authorid'):
         await message.channel.send(str(message.author.id))
-        
+    if message.content.startswith('*matematik'):
+        k = len(gecici)
+        za = randomMath(random.randint(1, 5))
+        gecici.append(eval(za))
+        await message.channel.send(za + "=")
+    if "*cevap" == message.content.split(' ')[0]:
+        win = False
+        qwr = 0
+        for i in range(0, len(gecici)):
+            if int(message.content.split(' ')[1]) == int(gecici[i]):
+                win = True
+                qwr = i
+        if win == True:
+            await message.channel.send("Soru "+ str(qwr) +" bildiniz")
+            gecici.pop(qwr)
+            win = False
+        else:
+            await message.channel.send("Tutturamadın")
     if message.content.startswith('*Merhaba'):
         await message.channel.send('Merhaba')
     if message.content.upper() == "benim için müzik önerir misin".upper():
@@ -72,7 +94,7 @@ async def on_message(message):
 async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(
-        f'Hi {member.name}, Osmanlı Cumhuriyeti ne hoşgeldin tatlım!'
+        f'{member.name}, Osmanlı Cumhuriyeti ne hoşgeldin tatlım!'
     )
 
 client.run(BotToken)
